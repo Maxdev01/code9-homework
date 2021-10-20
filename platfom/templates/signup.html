@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+
+<style>
+
+    #disp {
+        display: none;
+    }
+    .signup-design {
+        padding: .80rem;
+        background: #082032;
+        width: 400px;
+        height: auto;
+        position: relative;
+        left: 25%;
+        color: white;
+    }
+
+    .signup-design input {
+        padding: .70rem;
+        margin: .10rem;
+    }
+
+    #btn-signup {
+        background-color: #F0A500;
+        border: none;
+        color: #082032;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+
+<div class="signup">
+    <div class="signup-design">
+        <h1>inscription</h1>
+        <hr>
+        <form action="{% url 'inscription' %}" method="POST">
+            {% csrf_token %}
+
+            {{ myform.as_p }}
+            <button type="submit" id="btn-signup">sign up</button>
+        </form>
+        <hr>
+        <em>Mettre un mot de passe que vous pouvez vous souvenir vos donnees seront proteger</em>
+        <hr>
+        <h4>Apres l'incription veuillez vous connectez pour decouvrir
+        nos fonctionalites et deja Bienvenu !!</h4>
+    </div>
+</div>
+{% endblock %}

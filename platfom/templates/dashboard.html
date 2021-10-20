@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+<style>
+    .div-design-dash {
+        position: relative;
+        left: 35%;
+        top: 30%;
+        background: #000000;
+        width: 350px;
+        box-shadow: 2px 2px 1px 2px #fff;
+        padding: .5rem;
+        margin: .7rem;
+    }
+
+    .div-design-dash h2 a {
+        color: #fff;
+    }
+
+    .div-design-dash h3 a {
+        color: #fff;
+    }
+
+    .div-notice {
+        background: #171717;
+        width: 400px;
+        color: #fff;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="div-dash">
+<h1>Bienvenue {{ request.user.username }}</h1>
+
+<div class="div-notice">
+    <h3>Cher(e) User</h3>
+    <p><em>Cette plateforme a ete cree pour vous aider a mettre vos competence en ligne 
+        avec la colaboration  de code9 Haiti j'ai pu mettre  realiser ce petit bijou
+        alors profitez <br> cette plateforme est tres facile a ete utiliser bientot nous allons 
+        le modifier pour le rendre plus accessible a vous
+    </em></p>
+
+</div>
+
+
+    <div class="div-design-dash">
+        <h2><a href="{% url 'newprofils' %}">Modifier votre Profil </a></h2>
+        <br>
+        <hr>
+        <h2><a href="{% url 'newprojects' %}">Ajouter un project</a></h2>
+
+        <br>
+        <h3><a href="{% url 'byuser' %}">Tes Projects</a></h3>
+        
+
+
+
+    </div>
+</div>
+{% endblock %}

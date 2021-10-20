@@ -1,0 +1,90 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPF - {% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'design.css' %}">
+
+    {% block style %} {% endblock %}
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html { font-size: 14px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+        .navbar {
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            align-items: center;
+            background-color: #333;
+        }
+        .brand {
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #fff;
+            padding: .25rem;
+        }
+        .nav ul {
+            list-style: none;
+            display: flex;
+        }
+        .nav li {
+            margin-left: .75rem;
+        }
+        .nav ul a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #fff;
+            padding: .25rem;
+        }
+        .main {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .footer-div {
+            background: #0A1931;
+            text-align: center;
+            align-items: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="#" class="brand">Portfolio Code9</a>
+        <nav class="nav">
+            <ul>
+                <li><a href="{% url 'first' %}">Accueil</a></li>
+                {% if not request.user.is_authenticated %}
+                    <li><a href="{% url 'inscription' %}">Incription</a></li>
+                    <li><a href="{% url 'connexion' %}">Connexion</a></li>
+                {% else %}
+                    <li><a href="{% url 'logout' %}">Deconnection</a></li>
+                    <li><a href="{% url 'newprojects' %}">ajouter un nouveau projet</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main">{% block content %} {% endblock %}</div>
+
+    <footer>
+        <div class="footer-div">
+            <p>&copy; 2021 Maxime Milien</p>
+            <p>remerciement : code9 Haiti</p>
+
+        </div>
+    </footer>
+    
+</body>
+</html>

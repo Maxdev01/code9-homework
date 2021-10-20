@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+    .photo-radius , img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="grid-profil">
+
+        <div class="div-profil">
+            <h2>Profil de l'utilisateur</h2>
+
+            <div class="design-profil">
+                <div class="photo-radius">
+                    {% if profile.photo %}
+                        <img src="{{ profile.photo.url }}" alt="">
+                    {% else %}
+                    <img src="{% static 'images.png' %}" alt="">
+                    {% endif %}
+                </div>
+               
+                <h3>Nom : {{ profile.last_name }}</h3> 
+                <h3>Phone : {{ profile.phone }}</h3>
+                <p><strong>email : {{ profile.email }}</strong></p>
+            </div>
+        </div>
+    
+        <div class="div-project">
+            <h2>Ses Projects</h2>
+            <div class="design-project">
+               
+                {% for item in profile.user.projects.all %}
+                    <div class="project-item">
+                            <p><a href="{% url 'detail-project' item.id %}">{{ item.title }}</a></p>
+                            {% for cat in item.category.all %}
+                                <span>{{cat.name}}</span> - 
+                            {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

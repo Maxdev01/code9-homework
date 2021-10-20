@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+
+<style>
+    
+    
+    #div-img , img {
+        width: 400px;
+        height: 200px;
+    }
+    
+    
+    .div-design-projs {
+        background: #082032;
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 15px;
+        color: #fff;
+        font-size: 16px;
+        height: auto;
+        width: 450px;
+        
+    }
+
+    .div-proj {
+        display: grid;
+        grid-column-gap: 5px;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+}
+#pad-h2 {
+    padding-bottom: .80rem;
+}
+    
+</style>
+
+{% endblock %}
+
+{% block content %}
+        <h1><a href="{% url 'dash' %}">Retour au Dashbord</a></h1>
+
+    <div class="div-proj" style=" width: 1200px;">
+        
+        
+            {% for item in mypros %}
+            <div class="div-design-projs">
+                <h2 id="pad-h2">Titre : {{ item.title }}</h2>
+                <hr>
+                <div id="div-img">
+                    {% if item.photo %}
+                    <img src="{{ item.photo.url }}" alt="photo du project">
+
+                    {% else %}
+                    <img src="{% static 'pas2.jpeg' %}" alt="votre project n'a pase de photo">
+
+                    {% endif %}
+                </div>
+                <em>Date: {{ item.date_created }}</em>
+                <hr>
+                <p>{{ item.description }}</p>
+                {% for categ in item.category.all %}
+                    <h4 style="color: #F0A500">Cateorie(s): {{ categ.name }}</h4>
+                {% endfor %}
+                </div>             
+            
+            {% endfor %}     
+             
+    </div>
+
+    <div>
+        <h3>Pour effacer un project veiller bien verifier sa position</h3>
+        {% for i in request.user.projects.all %}
+            <h4><a href="{% url 'del' i.id %}">efacer un project</a></h4>
+            {% endfor %}
+        {% endblock %}
+    </div>

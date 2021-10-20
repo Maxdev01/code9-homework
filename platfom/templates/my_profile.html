@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+<style>
+    .design-profile-user {
+        background: #082032;
+        position: relative;
+        left: 30%;
+        width: 500px;
+        height: 400px;
+        color: #fff;
+    }
+    .design-profile-user input {
+        padding: .70rem;
+        margin: .25rem;
+        height: 30px;
+        width: 300px;
+    
+    }
+
+    .design-profile-user button {
+        background-color: #F0A500;
+        border: none;
+        color: #082032;
+        padding: 12px 28px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin-top: .15rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <h2><a href="{% url 'dash'%}">retour au Dashbord</a></h2>
+        <div class="design-profile-user">
+            <h3>Modifier votre profil ici </h3>
+            <hr>
+            <form action="{% url 'newprofils' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ myprofil.as_p }}
+                <button type="submit">Enregistrer</button>
+            </form>
+            <hr>
+            <h4>En Modifiant votre profil vous aidez les autres a mieux vous connaitre car cette 
+                plateforme peut vous aidez a trouvez du travail ou des contrats 
+            </h4>
+        </div>
+    </div>
+
+{% endblock %}

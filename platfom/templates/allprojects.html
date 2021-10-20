@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+
+<style>
+    .projects-design {
+        background: #082032;
+        position: relative;
+        left: 30%;
+        width: 500px;
+        height: auto;
+        color: #fff;
+    }
+
+    .projects-design button {
+        background-color: #F0A500;
+        border: none;
+        color: #082032;
+        padding: 12px 28px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin-top: .15rem;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+
+<div>
+
+    <h2><a href="{% url 'dash'%}">Retour au dash </a></h2>
+    <div class="projects-design">
+        <h3>Ajoutez un Projet ici</h3>
+        <hr>
+        
+        <br>
+        <form action="{% url 'newprojects' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ myprojects.as_p }}
+            <button type="submit">Enregistre</button>
+        </form>
+        <hr>
+
+        <h3>Dans la desciption veuillez bien decrire ce que vous faites dans la vie et n'oubliez pas de
+            donner toutes les informations utiles et importantes qui peuvent suciter une personne a vous 
+            contacter
+        </h3>
+        <hr>
+        <h3>Dans la case photo ajoutez l'un de vos oeuvres</h3>
+        <hr>
+        <h4>Deja On vous dit bonne chance</h4>
+    </div>
+</div>
+
+{% endblock %}

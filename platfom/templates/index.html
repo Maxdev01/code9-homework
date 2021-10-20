@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+
+<style>
+    .index {
+        width: 400px;
+        height: auto;
+        background: #082032;
+        color: #fff;
+    }
+
+    .user-class {
+        position: relative;
+        bottom: 55%;
+        left: 35%;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+
+<div class="users">
+    <div class="index">
+        <h3>Bienvenue a vous cette platforme est pour vous un soutien parce qu'elle vous aidera
+            a vous promouvoir alors n'hesitez a vous incrire et vous connecter pour explorer nos
+            fonctionalite avec le soutien de code9 ce Bijou est maintenant disponible pour vous alors
+            profitez-en  Merci 
+        </h3>
+        <hr>
+        <strong>Prenez le temps de bien visitez nos utilisateurs car l'un dans eux pourra vous etre util</strong>
+    </div>
+    
+    <div class="user-class" style="color: white">
+        <h2>Nos utilisateurs</h2>
+        {% for item in users %}
+            <h4><a href="{% url 'detail-profil' item.id %}" class="user">{{ item.username }}</a></h4>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
